@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Good } from "../Good/Good";
 import axios from "axios";
-import "./Goods.scss";
 import { BuyModal } from "../BuyModal/BuyModal";
+import { Loader } from "../Loader/Loader";
+import "./Goods.scss";
 
 export const Goods = () => {
   const [goods, setGoods] = useState<Good[] | any>([]);
@@ -41,7 +42,7 @@ export const Goods = () => {
     <>
       <div className="container">
         {loader ? (
-          <h2>Loader</h2>
+          <Loader />
         ) : (
           <div className="goods">
             <ul className="goods-list">
