@@ -1,6 +1,11 @@
 import "./Good.scss";
 
-export const Good = ({ good, buy }: any) => {
+type Props = {
+  good: Good,
+  buy: (good: Good) => void,
+}
+
+export const Good: React.FC<Props> = ({ good, buy }) => {
   return (
     <div className="good-card">
       <div className="good-card__category">{good.category}</div>

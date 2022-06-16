@@ -1,5 +1,11 @@
 interface Good {
-  category: string,
+  category?: string,
+  name?: string,
+  price?: string,
+}
+
+interface Order {
   name: string,
-  price: string,
+  number: string,
+  order: Good,
 }

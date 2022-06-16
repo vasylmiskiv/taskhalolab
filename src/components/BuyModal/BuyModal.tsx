@@ -2,12 +2,22 @@ import "./BuyModal.scss";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 
-export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
-  const [nameInputError, setNameInputError] = useState("e");
-  const [numberInputError, setNumberInputError] = useState("e");
-  const [nameClass, setNameClass] = useState("");
-  const [numberClass, setNumberClass] = useState("");
-  const [newOrder, setNewOrder] = useState({
+type Props = {
+  votedGood: Good | undefined;
+  closeModal: () => void;
+  buyModal: boolean;
+};
+
+export const BuyModal: React.FC<Props> = ({
+  votedGood,
+  closeModal,
+  buyModal,
+}) => {
+  const [nameInputError, setNameInputError] = useState<string>("e");
+  const [numberInputError, setNumberInputError] = useState<string>("e");
+  const [nameClass, setNameClass] = useState<string>("");
+  const [numberClass, setNumberClass] = useState<string>("");
+  const [newOrder, setNewOrder] = useState<Order>({
     name: "",
     number: "",
     order: { ...votedGood },
@@ -44,19 +54,19 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
     }
   };
 
-
   const onInputNameFocus = () => {
     setNameInputError("e");
     setNameClass("");
-  }
+  };
 
   const onInputNumberFocus = () => {
     setNumberInputError("e");
     setNumberClass("");
-  }
+  };
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     inputNameChecker();
     inputNumberChecker();
     if (
@@ -74,11 +84,11 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
         <button className="modal__close" onClick={() => closeModal()}>
           <IoMdClose />
         </button>
-        <div className="modal__category">{votedGood.category}</div>
-        <div className="modal__name">{votedGood.name}</div>
+        <div className="modal__category">{votedGood?.category}</div>
+        <div className="modal__name">{votedGood?.name}</div>
         <div className="modal__price">
           <span className="modal__dollar-sign">$</span>
-          {votedGood.price}
+          {votedGood?.price}
         </div>
         <form className="modal__form" onSubmit={(e) => onSubmit(e)}>
           <input
@@ -101,10 +111,10 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
             className={`modal__input${numberClass}`}
             type="text"
             placeholder="Number"
-            onFocus={() => onInputNumberFocus()}
             onChange={(e) =>
               setNewOrder({ ...newOrder, number: e.target.value })
             }
+            onFocus={() => onInputNumberFocus()}
             onBlur={() => inputNumberChecker()}
           />
           <span
