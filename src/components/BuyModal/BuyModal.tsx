@@ -3,8 +3,8 @@ import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 
 export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
-  const [nameInputError, setNameInputError] = useState("");
-  const [numberInputError, setNumberInputError] = useState("");
+  const [nameInputError, setNameInputError] = useState("e");
+  const [numberInputError, setNumberInputError] = useState("e");
   const [nameClass, setNameClass] = useState("");
   const [numberClass, setNumberClass] = useState("");
   const [newOrder, setNewOrder] = useState({
@@ -23,7 +23,7 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
       setNameInputError("String contains numbers!");
       setNameClass(" modal__input-invalid");
     } else {
-      setNameInputError("");
+      setNameInputError("e");
       setNameClass(" modal__input-valid");
     }
   };
@@ -39,10 +39,21 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
       setNumberInputError("Should contain 12 characters");
       setNumberClass(" modal__input-invalid");
     } else {
-      setNumberInputError("");
+      setNumberInputError("e");
       setNumberClass(" modal__input-valid");
     }
   };
+
+
+  const onInputNameFocus = () => {
+    setNameInputError("e");
+    setNameClass("");
+  }
+
+  const onInputNumberFocus = () => {
+    setNumberInputError("e");
+    setNumberClass("");
+  }
 
   const onSubmit = (e: any) => {
     e.preventDefault();
@@ -75,22 +86,34 @@ export const BuyModal = ({ votedGood, closeModal, buyModal }: any) => {
             type="text"
             placeholder="Name"
             onChange={(e) => setNewOrder({ ...newOrder, name: e.target.value })}
+            onFocus={() => onInputNameFocus()}
             onBlur={() => inputNameChecker()}
           />
-          <span className="modal__input-error">
-            {nameInputError && nameInputError}
+          <span
+            className="modal__input-error"
+            style={{
+              visibility: nameInputError.length > 1 ? "visible" : "hidden",
+            }}
+          >
+            {nameInputError}
           </span>
           <input
             className={`modal__input${numberClass}`}
             type="text"
             placeholder="Number"
+            onFocus={() => onInputNumberFocus()}
             onChange={(e) =>
               setNewOrder({ ...newOrder, number: e.target.value })
             }
             onBlur={() => inputNumberChecker()}
           />
-          <span className="modal__input-error">
-            {numberInputError && numberInputError}
+          <span
+            className="modal__input-error"
+            style={{
+              visibility: numberInputError.length > 1 ? "visible" : "hidden",
+            }}
+          >
+            {numberInputError}
           </span>
           <button className="modal__submit" type="submit">
             Order

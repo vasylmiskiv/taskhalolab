@@ -1,12 +1,12 @@
 .modal {
   position: fixed;
-  z-index: 1; 
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.6);
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@
     font-size: 16px;
     justify-content: center;
     align-items: center;
-    padding: 10px; 
+    padding: 10px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -74,12 +74,13 @@
 
   &__input {
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 8px;
     width: 100%;
     padding: 16px;
     border-radius: 12px;
     outline: none;
     border: 1px solid #e2e2e2;
+    transition: 0.3s ease-in;
 
     &-error {
       font-size: 12px;
@@ -87,28 +88,24 @@
     }
 
     &-invalid {
-      border: 1px solid #E43F3F;
-
-      &::after {
-         content: " - Remember this";
-      }
+      border: 1px solid #e43f3f;
     }
 
     &-valid {
-      border: 1px solid #50DAA8;
+      border: 1px solid #50daa8;
     }
   }
 
   &__submit {
-    margin-top: 30px;
+    margin-top: 18px;
     width: 100%;
     height: 50px;
     border-radius: 12px;
     font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
-    background-color: #50DAA8;
-    border:none;
+    background-color: #50daa8;
+    border: none;
     color: #fff;
     cursor: pointer;
     transition: 0.2s ease-out;
@@ -121,18 +118,14 @@
       opacity: 0;
       content: "\0279E";
       transition: transform 0.3s ease-out;
-  }
+    }
 
-  &:hover {
-      background-color: #4BCFA0;
+    &:hover {
+      background-color: #4bcfa0;
       &::after {
-          opacity: 1;
-          transform: translateX(4px);
+        opacity: 1;
+        transform: translateX(4px);
       }
-  }
+    }
   }
 }
-
-
-
-
